@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(ControladorVision))]
 public class EnemyAI : Car
 {
     private NavMeshAgent navMeshAgent;
@@ -15,19 +18,16 @@ public class EnemyAI : Car
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         controlVision = GetComponent<ControladorVision>();
+        rb = GetComponent<Rigidbody>();
+        pv = GetComponent<PhotonView>();        
     }
 
-    void Start ()
-    {
-	}
-	
 	void Update ()
     {
 		if(controlVision.SeePlayer)
         {
-            RaycastHit hit;
             if (Time.time > nextFire 
-                && Physics.Raycast(RaycastShoot.position, transform.forward , out hit , controlVision.rangoVision) 
+                && Physics.Raycast(Weapon.transform.position, transform.forward , out RaycastHit hit , controlVision.rangoVision) 
                 && hit.collider.CompareTag("Player"))
             {
                 nextFire = Time.time + fireRate;

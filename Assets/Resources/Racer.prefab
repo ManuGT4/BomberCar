@@ -5735,7 +5735,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4915058814800071233}
-  m_LocalRotation: {x: -0, y: -0.9063079, z: -0, w: 0.42261827}
+  m_LocalRotation: {x: 0, y: -0.9063079, z: 0, w: 0.42261827}
   m_LocalPosition: {x: 0, y: 1.121545, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
@@ -5816,8 +5816,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 8491093044096944729}
   - {fileID: 8510175459103807902}
-  viewIdField: 0
-  InstantiationId: 6
+  viewIdField: 2
+  InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &8510175459103807902
 MonoBehaviour:
@@ -5922,7 +5922,15 @@ MonoBehaviour:
   reverseForce: 200
   brakeForce: 50
   Weapon: {fileID: 7557870581156918603}
-  Bombs: []
+  Bombs:
+  - {fileID: 1757331455823274, guid: 68af08ae78f0cdd42a429a8b9df84f8b, type: 3}
+  - {fileID: 1261728795294940, guid: 371602c9b0ce8bd46b84d3d62ca3668f, type: 3}
+  - {fileID: 1771444698147450, guid: a9a268709d8349740a5fb9c06ba3a13a, type: 3}
+  - {fileID: 1947869709874026, guid: 2a638b61169b15a4097d6bd8cc3d3d66, type: 3}
+  - {fileID: 1296887900904958, guid: 616c3f9eecf0409439439e89962220e8, type: 3}
+  - {fileID: 1174249376880516, guid: 505d4c371923a5248bc87fb15b790c7d, type: 3}
+  - {fileID: 1210641655819808, guid: edda806a5a78bb54385efd4ea7276086, type: 3}
+  - {fileID: 1177541558521114, guid: b6b2de77c471fe4479eef9d37ce3a148, type: 3}
   life: 5
   FrontLeft: {fileID: 4176705455695380774}
   FrontRight: {fileID: 3147373249109506733}

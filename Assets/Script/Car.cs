@@ -15,6 +15,8 @@ public class CarTheme
     public int wheelB;
 }
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PhotonView))]
 public class Car : MonoBehaviourPun, IPunObservable
 {
     [Header("Particles")]
@@ -22,8 +24,9 @@ public class Car : MonoBehaviourPun, IPunObservable
     public ParticleSystem flashParticle;
 
     //Componentes
-    private Rigidbody rb;
-    private PhotonView pv;
+    protected Rigidbody rb;
+    protected PhotonView pv;
+
     private object[] Data;
 
     [Header("Car Set")]
@@ -51,6 +54,7 @@ public class Car : MonoBehaviourPun, IPunObservable
     public float reverseForce = 200f;
     public float brakeForce = 50f;
 
+    [SerializeField]
     protected bool acelera = false,
                 reversa = false,
                 freno = false;
@@ -75,11 +79,6 @@ public class Car : MonoBehaviourPun, IPunObservable
 
     public int numeroRandom;
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-        pv = GetComponent<PhotonView>();
-    }
 
     public void Start()
     {
@@ -100,7 +99,6 @@ public class Car : MonoBehaviourPun, IPunObservable
         {
             if (PC)
             {
-
                 if (acelera)
                 {
                     BackLeft.motorTorque = motorForce;
@@ -136,14 +134,10 @@ public class Car : MonoBehaviourPun, IPunObservable
                 }
             }
 
-            FrontLeft.steerAngle = rotation;
             FrontLeft.transform.localEulerAngles = new Vector3(0, rotation, 0);
-            FrontRight.steerAngle = rotation;
             FrontRight.transform.localEulerAngles = new Vector3(0, rotation, 0);
             FrontWheel.transform.localEulerAngles = new Vector3(0, rotation, 0);
         }
-
-
     }
 
     private void OnCollisionEnter(Collision c)

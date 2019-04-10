@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ControladorVision : MonoBehaviour {
 
-    private EnemyAI controladorNavMesh;
     private SphereCollider ojos;
 
     [HideInInspector]
@@ -15,7 +14,6 @@ public class ControladorVision : MonoBehaviour {
 
     private void Awake()
     {
-        controladorNavMesh = GetComponent<EnemyAI>();
         ojos = GetComponent<SphereCollider>();
         ojos.radius = rangoVision;
     }

@@ -13455,8 +13455,19 @@ MonoBehaviour:
   motorForce: 400
   reverseForce: 200
   brakeForce: 50
+  acelera: 0
+  reversa: 0
+  freno: 0
   Weapon: {fileID: 3771957075110515076}
-  Bombs: []
+  Bombs:
+  - {fileID: 1757331455823274, guid: 68af08ae78f0cdd42a429a8b9df84f8b, type: 3}
+  - {fileID: 1261728795294940, guid: 371602c9b0ce8bd46b84d3d62ca3668f, type: 3}
+  - {fileID: 1771444698147450, guid: a9a268709d8349740a5fb9c06ba3a13a, type: 3}
+  - {fileID: 1947869709874026, guid: 2a638b61169b15a4097d6bd8cc3d3d66, type: 3}
+  - {fileID: 1296887900904958, guid: 616c3f9eecf0409439439e89962220e8, type: 3}
+  - {fileID: 1174249376880516, guid: 505d4c371923a5248bc87fb15b790c7d, type: 3}
+  - {fileID: 1210641655819808, guid: edda806a5a78bb54385efd4ea7276086, type: 3}
+  - {fileID: 1177541558521114, guid: b6b2de77c471fe4479eef9d37ce3a148, type: 3}
   life: 5
   FrontLeft: {fileID: 4514273169303652959}
   FrontRight: {fileID: 918135310161884374}

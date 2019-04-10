@@ -1,9 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Player : Car
 {
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        pv = GetComponent<PhotonView>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -34,14 +42,11 @@ public class Player : Car
             {
                 freno = !freno;
             }*/
-        }
-    }
 
-    private void FixedUpdate()
-    {
-        if (photonView.IsMine)
-        {
             float rotation = Input.GetAxis("Horizontal") * maxAngle;
+
+            FrontLeft.steerAngle = rotation;
+            FrontRight.steerAngle = rotation;
         }
     }
 }

@@ -74,6 +74,9 @@ GameObject:
   - component: {fileID: 5855926977766185490}
   - component: {fileID: 8115928211344930236}
   - component: {fileID: 4146436865963878069}
+  - component: {fileID: 2555658694738020742}
+  - component: {fileID: 3565338916466069312}
+  - component: {fileID: 1317955869279542073}
   m_Layer: 0
   m_Name: BuggyBot
   m_TagString: Player
@@ -88,7 +91,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604176472193801624}
-  m_LocalRotation: {x: -0, y: -0.9063079, z: -0, w: 0.42261827}
+  m_LocalRotation: {x: 0, y: -0.9063079, z: 0, w: 0.42261827}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
@@ -189,8 +192,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4146436865963878069}
   - {fileID: 8115928211344930236}
-  viewIdField: 0
-  InstantiationId: 1
+  viewIdField: 5
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &8115928211344930236
 MonoBehaviour:
@@ -333,7 +336,15 @@ MonoBehaviour:
   reverseForce: 200
   brakeForce: 50
   Weapon: {fileID: 1575087906308833057}
-  Bombs: []
+  Bombs:
+  - {fileID: 1757331455823274, guid: 68af08ae78f0cdd42a429a8b9df84f8b, type: 3}
+  - {fileID: 1261728795294940, guid: 371602c9b0ce8bd46b84d3d62ca3668f, type: 3}
+  - {fileID: 1771444698147450, guid: a9a268709d8349740a5fb9c06ba3a13a, type: 3}
+  - {fileID: 1947869709874026, guid: 2a638b61169b15a4097d6bd8cc3d3d66, type: 3}
+  - {fileID: 1296887900904958, guid: 616c3f9eecf0409439439e89962220e8, type: 3}
+  - {fileID: 1174249376880516, guid: 505d4c371923a5248bc87fb15b790c7d, type: 3}
+  - {fileID: 1210641655819808, guid: edda806a5a78bb54385efd4ea7276086, type: 3}
+  - {fileID: 1177541558521114, guid: b6b2de77c471fe4479eef9d37ce3a148, type: 3}
   life: 5
   FrontLeft: {fileID: 3579722223823166456}
   FrontRight: {fileID: 448930587649675143}
@@ -344,6 +355,56 @@ MonoBehaviour:
   numeroRandom: 0
   Target: {fileID: 0}
   RaycastShoot: {fileID: 0}
+--- !u!114 &2555658694738020742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604176472193801624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831caa9f0d94877439935a68c046861b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  rangoVision: 50
+  SeePlayer: 0
+--- !u!195 &3565338916466069312
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604176472193801624}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!135 &1317955869279542073
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604176472193801624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 35
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &651846302863287913
 GameObject:
   m_ObjectHideFlags: 0

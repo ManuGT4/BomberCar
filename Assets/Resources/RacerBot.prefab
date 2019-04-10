@@ -4997,6 +4997,9 @@ GameObject:
   - component: {fileID: 1734586657004548481}
   - component: {fileID: 7551372425082754530}
   - component: {fileID: 4093682242531471278}
+  - component: {fileID: 4482744119053176470}
+  - component: {fileID: 6940635940453691868}
+  - component: {fileID: 9010562641856406949}
   m_Layer: 0
   m_Name: RacerBot
   m_TagString: Player
@@ -5011,7 +5014,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122509740231577782}
-  m_LocalRotation: {x: -0, y: -0.9063079, z: -0, w: 0.42261827}
+  m_LocalRotation: {x: 0, y: -0.9063079, z: 0, w: 0.42261827}
   m_LocalPosition: {x: 0, y: 1.121545, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
@@ -5092,8 +5095,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4093682242531471278}
   - {fileID: 7551372425082754530}
-  viewIdField: 0
-  InstantiationId: 5
+  viewIdField: 1
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &7551372425082754530
 MonoBehaviour:
@@ -5196,7 +5199,15 @@ MonoBehaviour:
   reverseForce: 200
   brakeForce: 50
   Weapon: {fileID: 2582527345011812676}
-  Bombs: []
+  Bombs:
+  - {fileID: 1757331455823274, guid: 68af08ae78f0cdd42a429a8b9df84f8b, type: 3}
+  - {fileID: 1261728795294940, guid: 371602c9b0ce8bd46b84d3d62ca3668f, type: 3}
+  - {fileID: 1771444698147450, guid: a9a268709d8349740a5fb9c06ba3a13a, type: 3}
+  - {fileID: 1947869709874026, guid: 2a638b61169b15a4097d6bd8cc3d3d66, type: 3}
+  - {fileID: 1296887900904958, guid: 616c3f9eecf0409439439e89962220e8, type: 3}
+  - {fileID: 1174249376880516, guid: 505d4c371923a5248bc87fb15b790c7d, type: 3}
+  - {fileID: 1210641655819808, guid: edda806a5a78bb54385efd4ea7276086, type: 3}
+  - {fileID: 1177541558521114, guid: b6b2de77c471fe4479eef9d37ce3a148, type: 3}
   life: 5
   FrontLeft: {fileID: 1759167539331513735}
   FrontRight: {fileID: 3306087607809451664}
@@ -5207,6 +5218,56 @@ MonoBehaviour:
   numeroRandom: 0
   Target: {fileID: 0}
   RaycastShoot: {fileID: 0}
+--- !u!114 &4482744119053176470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122509740231577782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831caa9f0d94877439935a68c046861b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  rangoVision: 50
+  SeePlayer: 0
+--- !u!195 &6940635940453691868
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122509740231577782}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!135 &9010562641856406949
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122509740231577782}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 35
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2153528809043911708
 GameObject:
   m_ObjectHideFlags: 0
