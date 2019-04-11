@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class EstadoPersecusion : MonoBehaviour {
 
-    private MaquinaDeEstados maquinaDeEstados;
     private EnemyAI controladorNavMesh;
     private ControladorVision controladorVision;
 
     private void Awake()
     {
-        maquinaDeEstados = GetComponent<MaquinaDeEstados>();
         controladorNavMesh = GetComponent<EnemyAI>();
         controladorVision = GetComponent<ControladorVision>();
     }

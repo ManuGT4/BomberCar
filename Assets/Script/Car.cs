@@ -79,7 +79,6 @@ public class Car : MonoBehaviourPun, IPunObservable
 
     public int numeroRandom;
 
-
     public void Start()
     {
         Data = pv.InstantiationData;
@@ -138,6 +137,16 @@ public class Car : MonoBehaviourPun, IPunObservable
             FrontRight.transform.localEulerAngles = new Vector3(0, rotation, 0);
             FrontWheel.transform.localEulerAngles = new Vector3(0, rotation, 0);
         }
+    }
+
+    protected void Shoot()
+    {
+        nextFire = Time.time + fireRate;
+
+        GameObject bomb = Instantiate(Bombs[0], Weapon.transform.position, Weapon.transform.rotation) as GameObject;
+        Physics.IgnoreCollision(bomb.GetComponent<Collider>(), GetComponent<BoxCollider>());
+        Bullet bombScript = bomb.GetComponent<Bullet>();
+        bombScript.Tirador = GetComponent<BoxCollider>();
     }
 
     private void OnCollisionEnter(Collision c)

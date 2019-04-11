@@ -70,13 +70,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5231078513031975269}
   - component: {fileID: 3040167313198071443}
-  - component: {fileID: 6109434923030464884}
   - component: {fileID: 5855926977766185490}
   - component: {fileID: 8115928211344930236}
   - component: {fileID: 4146436865963878069}
   - component: {fileID: 2555658694738020742}
   - component: {fileID: 3565338916466069312}
   - component: {fileID: 1317955869279542073}
+  - component: {fileID: 6281091803606524253}
   m_Layer: 0
   m_Name: BuggyBot
   m_TagString: Player
@@ -158,20 +158,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!136 &6109434923030464884
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 604176472193801624}
-  m_Material: {fileID: 13400000, guid: 6e0f0bda2466dd94b942edf43bae81ad, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 3.2
-  m_Height: 11
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5855926977766185490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,8 +178,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4146436865963878069}
   - {fileID: 8115928211344930236}
-  viewIdField: 5
-  InstantiationId: 5
+  viewIdField: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &8115928211344930236
 MonoBehaviour:
@@ -335,6 +321,9 @@ MonoBehaviour:
   motorForce: 400
   reverseForce: 200
   brakeForce: 50
+  acelera: 0
+  reversa: 0
+  freno: 0
   Weapon: {fileID: 1575087906308833057}
   Bombs:
   - {fileID: 1757331455823274, guid: 68af08ae78f0cdd42a429a8b9df84f8b, type: 3}
@@ -405,6 +394,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 35
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6281091803606524253
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604176472193801624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 10}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!1 &651846302863287913
 GameObject:
   m_ObjectHideFlags: 0

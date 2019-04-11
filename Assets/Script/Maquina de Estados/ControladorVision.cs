@@ -24,8 +24,6 @@ public class ControladorVision : MonoBehaviour {
         {
             SeePlayer = true;
             Target = other.transform;
-            Debug.Log("i see you");
-
         }
     }
 
@@ -35,8 +33,6 @@ public class ControladorVision : MonoBehaviour {
         {
             SeePlayer = false;
             Target = null;
-            Debug.Log("i cant see other player");
-
         }
     }
 }

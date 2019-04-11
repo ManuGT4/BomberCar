@@ -4993,13 +4993,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8025226247575298751}
   - component: {fileID: 2340603730721535208}
-  - component: {fileID: 4391251872361945460}
   - component: {fileID: 1734586657004548481}
   - component: {fileID: 7551372425082754530}
   - component: {fileID: 4093682242531471278}
   - component: {fileID: 4482744119053176470}
   - component: {fileID: 6940635940453691868}
   - component: {fileID: 9010562641856406949}
+  - component: {fileID: 6667993067536455289}
   m_Layer: 0
   m_Name: RacerBot
   m_TagString: Player
@@ -5061,20 +5061,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
---- !u!136 &4391251872361945460
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122509740231577782}
-  m_Material: {fileID: 13400000, guid: 6e0f0bda2466dd94b942edf43bae81ad, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 2
-  m_Height: 11.5
-  m_Direction: 2
-  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!114 &1734586657004548481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5095,8 +5081,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4093682242531471278}
   - {fileID: 7551372425082754530}
-  viewIdField: 1
-  InstantiationId: 1
+  viewIdField: 0
+  InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &7551372425082754530
 MonoBehaviour:
@@ -5198,6 +5184,9 @@ MonoBehaviour:
   motorForce: 400
   reverseForce: 200
   brakeForce: 50
+  acelera: 0
+  reversa: 0
+  freno: 0
   Weapon: {fileID: 2582527345011812676}
   Bombs:
   - {fileID: 1757331455823274, guid: 68af08ae78f0cdd42a429a8b9df84f8b, type: 3}
@@ -5268,6 +5257,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 35
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6667993067536455289
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122509740231577782}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &2153528809043911708
 GameObject:
   m_ObjectHideFlags: 0

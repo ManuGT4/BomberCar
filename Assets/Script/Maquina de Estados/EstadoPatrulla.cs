@@ -52,8 +52,7 @@ public class EstadoPatrulla : MonoBehaviour {
     {
         Vector3 randomDirection = Random.insideUnitSphere * radioPatrulla;
         randomDirection += originPosition;
-        NavMeshHit _hit;
-        NavMesh.SamplePosition(randomDirection, out _hit, radioPatrulla + 1 , NavMesh.AllAreas);
+        NavMesh.SamplePosition(randomDirection, out NavMeshHit _hit, radioPatrulla + 1 , NavMesh.AllAreas);
         Vector3 finalPosition = _hit.position;
         controladorNavMesh.ActualizarDestinoNavMeshAgent(finalPosition);
     }

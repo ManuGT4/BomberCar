@@ -18,14 +18,9 @@ public class Player : Car
         if (photonView.IsMine)
         {
 
-            if (Input.GetButton("Fire1") && Time.time > nextFire)
-            {
-                nextFire = Time.time + fireRate;
-                GameObject bomb = Instantiate(Bombs[0], Weapon.transform.position, Weapon.transform.rotation) as GameObject;
-                Physics.IgnoreCollision(bomb.GetComponent<Collider>(), GetComponent<Collider>());
-                Bullet bombScript = bomb.GetComponent<Bullet>();
-                bombScript.Tirador = GetComponent<Collider>();
-            }
+            if (Input.GetButton("Fire1") && Time.time > nextFire)         
+                Shoot();
+            
 
             if (Input.GetButtonDown("Fire2"))
                 acelera = !acelera;

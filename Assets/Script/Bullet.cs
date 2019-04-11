@@ -5,9 +5,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
     private Rigidbody rb;
+    private bool FirstCollision = false;
 
     [HideInInspector]
-    public Collider Tirador;
+    public BoxCollider Tirador;
 
     public int Force = 10;
     public int NumRebote = 5;
@@ -24,7 +25,11 @@ public class Bullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        Physics.IgnoreCollision(Tirador, GetComponent<Collider>(), false);
+        if (!FirstCollision)
+        {
+            Physics.IgnoreCollision(Tirador, GetComponent<SphereCollider>(), false);
+            FirstCollision = true;
+        }
 
         if (collision.gameObject.CompareTag("Player"))
         {
