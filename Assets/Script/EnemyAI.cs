@@ -28,7 +28,16 @@ public class EnemyAI : Car
         pv = GetComponent<PhotonView>();        
     }
 
-	void Update ()
+    protected override void Start()
+    {
+        base.Start();
+        navMeshAgent.Warp(transform.position);
+        Target = GameObject.FindGameObjectWithTag("Player").transform;
+        ActualizarDestinoNavMeshAgent(Target.position);
+
+    }
+
+    void Update ()
     {
 		if(controlVision.SeePlayer)
         {

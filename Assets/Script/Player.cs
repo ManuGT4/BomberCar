@@ -17,7 +17,6 @@ public class Player : Car
     {
         if (photonView.IsMine)
         {
-
             if (Input.GetButton("Fire1") && Time.time > nextFire)         
                 Shoot();
             

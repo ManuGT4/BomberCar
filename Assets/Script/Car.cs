@@ -40,10 +40,11 @@ public class Car : MonoBehaviourPun, IPunObservable
     public CarTheme[] Theme;
     public CarTheme cT;
 
-    [Header("Car Config")]
     //Normal [0], Stun[1] , Slow[2] , Disable[3] , Marked[4]
-    public bool[] state;
+    enum States { Normal , Stun , Slow , Disable , Marked }
+    States state = States.Normal;
 
+    [Header("Car Config")]
     protected float nextFire = 0, //Tiempo antes del siguiente disparo
                   fireRate = 1.4f, //Tiempo entre disparos
                   maxAngle = 30; //Velocidad de rotacion del personaje
@@ -79,7 +80,7 @@ public class Car : MonoBehaviourPun, IPunObservable
 
     public int numeroRandom;
 
-    public void Start()
+    protected virtual void Start()
     {
         Data = pv.InstantiationData;
         cT.Mat = (int)Data[0];
@@ -139,6 +140,7 @@ public class Car : MonoBehaviourPun, IPunObservable
         }
     }
 
+
     protected void Shoot()
     {
         nextFire = Time.time + fireRate;
@@ -163,19 +165,22 @@ public class Car : MonoBehaviourPun, IPunObservable
                 rb.AddForce(dir * 15000);
                 break;
             case "Wood": //Stun
-                if (!isStun) StartCoroutine(Stun());
+                if (state != States.Stun) StartCoroutine(Stun());
                 break;
             case "PEM": //Deshabilita disparro
-                if (!shootDisable) StartCoroutine(Disabled());
+                if (state != States.Disable) StartCoroutine(Disabled());
                 break;
             case "Normal": //Damage
                 life--;
                 break;
             case "Pua": //Damage
+                life--;
                 break;
             case "RedBomb": //Insta kill
+                life = 0;
                 break;
             case "BuckBomb": //Vel Red
+                if (state != States.Slow) StartCoroutine(VelRed());
                 break;
             case "Vision": //Marcado
                 break;
@@ -183,32 +188,34 @@ public class Car : MonoBehaviourPun, IPunObservable
         }
     }
 
-    bool isStun = false;
     private IEnumerator Stun()
     {
-        isStun = true;
+        state = States.Stun;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         yield return new WaitForSeconds(3f);
-        isStun = false;
+        state = States.Normal;
         rb.constraints = RigidbodyConstraints.None;
     }
 
     private IEnumerator VelRed()
     {
+        state = States.Slow;
         yield return new WaitForSeconds(5f);
+        state = States.Normal;
     }
 
-    bool shootDisable = false;
     private IEnumerator Disabled()
     {
-        shootDisable = true;
+        state = States.Disable;
         yield return new WaitForSeconds(5f);
-        shootDisable = false;
+        state = States.Normal;
     }
 
     private IEnumerator Market()
     {
+        state = States.Marked;
         yield return new WaitForSeconds(5f);
+        state = States.Normal;
     }
 
     void DisableAllObjects()
