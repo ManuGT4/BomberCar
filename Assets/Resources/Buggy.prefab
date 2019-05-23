@@ -13559,9 +13559,9 @@ MonoBehaviour:
     aBack: 0
     wheelF: 0
     wheelB: 0
-  motorForce: 400
-  reverseForce: 200
-  brakeForce: 50
+  MaxMotorForce: 500
+  MaxReverseForce: 250
+  BrakeForce: 50
   acelera: 0
   reversa: 0
   freno: 0
@@ -13583,6 +13583,7 @@ MonoBehaviour:
   PC: 1
   FrontWheel: {fileID: 0}
   numeroRandom: 0
+  PlayerSelect: 0
 --- !u!1 &7074010035605543644
 GameObject:
   m_ObjectHideFlags: 0

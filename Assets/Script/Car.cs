@@ -51,9 +51,11 @@ public class Car : MonoBehaviourPun, IPunObservable
 
     protected float rotation;
 
-    public float motorForce = 400f;
-    public float reverseForce = 200f;
-    public float brakeForce = 50f;
+    public float MaxMotorForce = 500f;
+    public float MaxReverseForce = 250f;
+    protected float motorForce = 0;
+    public float BrakeForce = 50f;
+    protected float actualBrakeForce = 0;
 
     [SerializeField]
     protected bool acelera = false,
@@ -97,46 +99,20 @@ public class Car : MonoBehaviourPun, IPunObservable
     {
         if (photonView.IsMine)
         {
-            if (PC)
-            {
-                if (acelera)
-                {
-                    BackLeft.motorTorque = motorForce;
-                    BackRight.motorTorque = motorForce;
-                    FrontLeft.motorTorque = motorForce;
-                    FrontRight.motorTorque = motorForce;
-                    BackLeft.brakeTorque = 0;
-                    BackRight.brakeTorque = 0;
-                    FrontLeft.brakeTorque = 0;
-                    FrontRight.brakeTorque = 0;
-                }
-                else if (reversa)
-                {
-                    BackLeft.motorTorque = -reverseForce;
-                    BackRight.motorTorque = -reverseForce;
-                    FrontLeft.motorTorque = -reverseForce;
-                    FrontRight.motorTorque = -reverseForce;
-                    BackLeft.brakeTorque = 0;
-                    BackRight.brakeTorque = 0;
-                    FrontLeft.brakeTorque = 0;
-                    FrontRight.brakeTorque = 0;
-                }
-                else
-                {
-                    BackLeft.brakeTorque = brakeForce;
-                    BackRight.brakeTorque = brakeForce;
-                    FrontRight.brakeTorque = brakeForce;
-                    FrontLeft.brakeTorque = brakeForce;
-                    FrontLeft.motorTorque = 0;
-                    FrontRight.motorTorque = 0;
-                    BackLeft.motorTorque = 0;
-                    BackRight.motorTorque = 0;
-                }
-            }
+            BackLeft.motorTorque = motorForce;
+            BackRight.motorTorque = motorForce;
+            FrontLeft.motorTorque = motorForce;
+            FrontRight.motorTorque = motorForce;
+            BackLeft.brakeTorque = actualBrakeForce;
+            BackRight.brakeTorque = actualBrakeForce;
+            FrontRight.brakeTorque = actualBrakeForce;
+            FrontLeft.brakeTorque = actualBrakeForce;
 
             FrontLeft.transform.localEulerAngles = new Vector3(0, rotation, 0);
             FrontRight.transform.localEulerAngles = new Vector3(0, rotation, 0);
             FrontWheel.transform.localEulerAngles = new Vector3(0, rotation, 0);
+            FrontLeft.steerAngle = rotation;
+            FrontRight.steerAngle = rotation;
         }
     }
 

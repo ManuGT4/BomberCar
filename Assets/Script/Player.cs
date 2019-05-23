@@ -5,11 +5,17 @@ using Photon.Pun;
 
 public class Player : Car
 {
+    private string[] players = new string[4] { "_J1", "_J2", "_J3", "_J4" };
+    private string actualPlayer;
+    public int PlayerSelect = 0;
+
+    private float inputAcceleration = 0;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
+        actualPlayer = players[PlayerSelect];
     }
 
     // Update is called once per frame
@@ -17,30 +23,18 @@ public class Player : Car
     {
         if (photonView.IsMine)
         {
-            if (Input.GetButton("Fire1") && Time.time > nextFire)         
+            if (Input.GetButton("ShootFront" + actualPlayer) && Time.time > nextFire)         
                 Shoot();
-            
 
-            if (Input.GetButtonDown("Fire2"))
-                acelera = !acelera;
-            if (Input.GetButtonUp("Fire2"))
-                acelera = !acelera;
+            if (Input.GetButtonDown("HandBrake" + actualPlayer))
+                actualBrakeForce = 50f;
+            if (Input.GetButtonUp("HandBrake" + actualPlayer))
+                actualBrakeForce = 0f;
 
-            if (Input.GetButtonDown("Fire3"))
-                reversa = !reversa;
-            if (Input.GetButtonUp("Fire3"))
-                reversa = !reversa;
+            inputAcceleration = Input.GetAxis("Accelerate" + actualPlayer);
+            motorForce = inputAcceleration > 0 ? inputAcceleration * MaxMotorForce : inputAcceleration * MaxReverseForce;
 
-            /*
-            if (Input.GetButtonDown("Fire4"))
-            {
-                freno = !freno;
-            }*/
-
-            float rotation = Input.GetAxis("Horizontal") * maxAngle;
-
-            FrontLeft.steerAngle = rotation;
-            FrontRight.steerAngle = rotation;
+            rotation = Input.GetAxis("Horizontal" + actualPlayer) * maxAngle;
         }
     }
 }
