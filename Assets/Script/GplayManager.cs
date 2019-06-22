@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using Photon.Pun;
-using ExitGames.Client.Photon;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class GplayManager : MonoBehaviourPun {
+public class GplayManager : MonoBehaviour {
 
     //Componentes
     private GameManager gameManager;
@@ -47,7 +44,7 @@ public class GplayManager : MonoBehaviourPun {
         cam = Camera.main;
     }
 
-    void Start ()
+    /*void Start ()
     {
         PlayerCount = gameManager.PlayerCount;
         GameObject target;
@@ -68,7 +65,7 @@ public class GplayManager : MonoBehaviourPun {
             PhotonNetwork.InstantiateSceneObject("BuggyBot", Reaparecer[i].position, Quaternion.identity,0 , gameManager.BotData[i - 1]);
         }
         duracion = duracion * 60; //Se pasa de minutos a segundos
-	}
+	}*/
 	
 	void Update ()
     {
@@ -82,12 +79,9 @@ public class GplayManager : MonoBehaviourPun {
             int sec = Mathf.FloorToInt(duracion % 60);
             Crono.text = min.ToString("00") + ":" + sec.ToString("00");
 
-            if(PhotonNetwork.IsMasterClient)
-                duracion -= Time.deltaTime;
+           /* if(PhotonNetwork.IsMasterClient)
+                duracion -= Time.deltaTime;*/
 
-            Hashtable time = new Hashtable() { { Duracion, duracion } };
-
-            PhotonNetwork.CurrentRoom.SetCustomProperties(time);
         }else if (Finish)
         {
             StartCoroutine(GameOver());
@@ -97,10 +91,5 @@ public class GplayManager : MonoBehaviourPun {
     private IEnumerator GameOver()
     {
         yield return null;
-    }
-
-    public void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
-    {
-
     }
 }

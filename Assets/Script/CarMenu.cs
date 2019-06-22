@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Photon.Pun;
 
 [System.Serializable]
 public class CarMenuTheme
@@ -13,13 +12,10 @@ public class CarMenuTheme
     public int wheelB;
 }
 
-public class CarMenu : MonoBehaviourPun
+public class CarMenu : MonoBehaviour
 {
     public ParticleSystem changeParticle;
     public ParticleSystem flashParticle;
-
-    //Componentes
-    private PhotonView pv;
 
     [Header("Car Set")]
     public GameObject car;
@@ -45,7 +41,6 @@ public class CarMenu : MonoBehaviourPun
 
     private void Awake()
     {
-        pv = GetComponent<PhotonView>();
     }
 
     public void Start()
@@ -76,7 +71,7 @@ public class CarMenu : MonoBehaviourPun
         }
         else
         {
-            Data = pv.InstantiationData;
+            //Data = pv.InstantiationData;
 
             cT.Mat = (int)Data[0];
             cT.aFront = (int)Data[1];

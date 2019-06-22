@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Photon.Pun;
-using Photon.Realtime;
 
-public class GameManager : MonoBehaviourPunCallbacks {
+public class GameManager : MonoBehaviour {
 
     [Header("Variables")]
     public int styleSelect;
@@ -57,63 +55,9 @@ public class GameManager : MonoBehaviourPunCallbacks {
         BotData.Add(botTmp);
     }
 
-    public void Connect()
-    {
-
-        // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
-        if (PhotonNetwork.IsConnected)
-        {
-            // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
-            PhotonNetwork.JoinRandomRoom();
-        }
-        else
-        {
-            // #Critical, we must first and foremost connect to Photon Online Server.
-            PhotonNetwork.GameVersion = gameVersion;
-            PhotonNetwork.ConnectUsingSettings();
-        }
-    }
-
-    public void StartPartida()
-    {
-        Connect();
-    }
-
-    public override void OnJoinRandomFailed(short returnCode, string message)
-    {
-        Debug.Log("No random room available, so we create one");
-
-        // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
-        PhotonNetwork.CreateRoom(null);
-    }
-
-    public override void OnJoinedRoom()
-    {
-        Debug.Log("Se creo");
-        base.OnJoinedRoom();
-    }
-
-
-    public override void OnConnectedToMaster()
-    {
-        Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
-        PhotonNetwork.JoinRandomRoom();
-    }
-    /*
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        Debug.LogFormat("Player entro a la room ", newPlayer.NickName); // not seen if you're the player connecting
-
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)
-        {
-            SceneManager.LoadScene(1);
-        }
-    }
-    */
 
     public void PartidaOffline(int mapa)
     {
-        PhotonNetwork.OfflineMode = true;
         SceneManager.LoadScene(mapa);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public class Player : Car
 {
@@ -14,27 +13,23 @@ public class Player : Car
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        pv = GetComponent<PhotonView>();
         actualPlayer = players[PlayerSelect];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
-        {
-            if (Input.GetButton("ShootFront" + actualPlayer) && Time.time > nextFire)         
-                Shoot();
+        if (Input.GetButton("ShootFront" + actualPlayer) && Time.time > nextFire)
+            Shoot();
 
-            if (Input.GetButtonDown("HandBrake" + actualPlayer))
-                actualBrakeForce = 50f;
-            if (Input.GetButtonUp("HandBrake" + actualPlayer))
-                actualBrakeForce = 0f;
+        if (Input.GetButtonDown("HandBrake" + actualPlayer))
+            actualBrakeForce = 50f;
+        if (Input.GetButtonUp("HandBrake" + actualPlayer))
+            actualBrakeForce = 0f;
 
-            inputAcceleration = Input.GetAxis("Accelerate" + actualPlayer);
-            motorForce = inputAcceleration > 0 ? inputAcceleration * MaxMotorForce : inputAcceleration * MaxReverseForce;
+        inputAcceleration = Input.GetAxis("Accelerate" + actualPlayer);
+        motorForce = inputAcceleration > 0 ? inputAcceleration * MaxMotorForce : inputAcceleration * MaxReverseForce;
 
-            rotation = Input.GetAxis("Horizontal" + actualPlayer) * maxAngle;
-        }
+        rotation = Input.GetAxis("Horizontal" + actualPlayer) * maxAngle;
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
 
 [System.Serializable]
 public class CarTheme
@@ -15,9 +13,14 @@ public class CarTheme
     public int wheelB;
 }
 
+[System.Serializable]
+public class LifeEvent : UnityEngine.Events.UnityEvent<int>
+{
+
+}
+
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(PhotonView))]
-public class Car : MonoBehaviourPun, IPunObservable
+public class Car : MonoBehaviour
 {
     [Header("Particles")]
     public ParticleSystem changeParticle;
@@ -25,7 +28,6 @@ public class Car : MonoBehaviourPun, IPunObservable
 
     //Componentes
     protected Rigidbody rb;
-    protected PhotonView pv;
 
     private object[] Data;
 
@@ -63,10 +65,18 @@ public class Car : MonoBehaviourPun, IPunObservable
                 freno = false;
 
     public GameObject Weapon;
-
     public GameObject[] Bombs;
 
-    public int life = 5; //Vida
+    int _lifes = 100;
+    protected int Lifes
+    {
+        get { return _lifes; }
+        set
+        {
+            _lifes = value;
+            whenLifesChange.Invoke(50);
+        }
+    }
 
     [Header("Wheel Collider")]
     public WheelCollider FrontLeft;
@@ -82,9 +92,13 @@ public class Car : MonoBehaviourPun, IPunObservable
 
     public int numeroRandom;
 
+
+    [SerializeField]
+    protected LifeEvent whenLifesChange;
+
     protected virtual void Start()
     {
-        Data = pv.InstantiationData;
+        //Data = pv.InstantiationData;
         cT.Mat = (int)Data[0];
         cT.aFront = (int)Data[1];
         cT.aMiddle = (int)Data[2];
@@ -97,7 +111,7 @@ public class Car : MonoBehaviourPun, IPunObservable
 
     private void FixedUpdate()
     {
-        if (photonView.IsMine)
+        /*if (photonView.IsMine)
         {
             BackLeft.motorTorque = motorForce;
             BackRight.motorTorque = motorForce;
@@ -113,7 +127,7 @@ public class Car : MonoBehaviourPun, IPunObservable
             FrontWheel.transform.localEulerAngles = new Vector3(0, rotation, 0);
             FrontLeft.steerAngle = rotation;
             FrontRight.steerAngle = rotation;
-        }
+        }*/
     }
 
 
@@ -147,13 +161,13 @@ public class Car : MonoBehaviourPun, IPunObservable
                 if (state != States.Disable) StartCoroutine(Disabled());
                 break;
             case "Normal": //Damage
-                life--;
+                Lifes--;
                 break;
             case "Pua": //Damage
-                life--;
+                Lifes--;
                 break;
             case "RedBomb": //Insta kill
-                life = 0;
+                Lifes = 0;
                 break;
             case "BuckBomb": //Vel Red
                 if (state != States.Slow) StartCoroutine(VelRed());
@@ -254,16 +268,6 @@ public class Car : MonoBehaviourPun, IPunObservable
         if (Set.wheelB > -1)
         {
             WheelBack[Set.wheelB].GetComponent<Renderer>().enabled = true;
-        }
-    }
-
-    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-        }
-        else
-        {
         }
     }
 }

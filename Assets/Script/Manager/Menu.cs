@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class Menu : MonoBehaviourPun
+public class Menu : MonoBehaviour
 {
     [Header("Version del Juego")]
     public string gameVersion = "0.1f";
@@ -61,8 +59,6 @@ public class Menu : MonoBehaviourPun
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.styleSelect = style;
-
-        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public void PlayButton()
@@ -90,9 +86,6 @@ public class Menu : MonoBehaviourPun
             case 0:
                 gameManager.PartidaOffline(mapSelect + 1);
                 break;
-            case 1:
-                gameManager.StartPartida();
-                break;
         }
     }
 
@@ -100,7 +93,6 @@ public class Menu : MonoBehaviourPun
     {
         StartCoroutine(PilarPosition(0));
         MapaName.text = Mapas[0];
-        PhotonNetwork.OfflineMode = true;
     }
 
     public void MultiPlayer()
@@ -529,10 +521,10 @@ public class Menu : MonoBehaviourPun
         gameManager.PlayerData[4] = cs.cT.wheelF;
         gameManager.PlayerData[5] = cs.cT.wheelB;
 
-        PhotonNetwork.SetPlayerCustomProperties(playerStats);
+        //PhotonNetwork.SetPlayerCustomProperties(playerStats);
     }
 
-    public void Add_Delete_Bot(int add_delete)
+    /*public void Add_Delete_Bot(int add_delete)
     {
         switch (add_delete)
         {
@@ -561,7 +553,7 @@ public class Menu : MonoBehaviourPun
                 }
                 break;
         }
-    }
+    }*/
 
     public void ChangeMap(int direction)
     {

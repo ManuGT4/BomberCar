@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -25,7 +24,6 @@ public class EnemyAI : Car
         navMeshAgent = GetComponent<NavMeshAgent>();
         controlVision = GetComponent<ControladorVision>();
         rb = GetComponent<Rigidbody>();
-        pv = GetComponent<PhotonView>();        
     }
 
     protected override void Start()
