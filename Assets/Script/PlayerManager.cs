@@ -91,6 +91,7 @@ namespace BomberCar.Player
                 shootingCooldown.StartCooldown();
 
                 //Define bullet
+                bulletData.activator = NetworkClient.ClientID;
                 bulletData.position.x = bulletSpawnPoint.position.x.TwoDecimals().ToString().ChangeDot();
                 bulletData.position.y = bulletSpawnPoint.position.y.TwoDecimals().ToString().ChangeDot();
                 bulletData.direction.x = bulletSpawnPoint.up.x.ToString().ChangeDot();
@@ -98,7 +99,6 @@ namespace BomberCar.Player
 
                 //Send bullet
                 networkIdentity.GetSocket().Emit("fireBullet", new JSONObject(JsonUtility.ToJson(bulletData)));
-                Debug.Log("Se disparo");
             } 
         }
     }

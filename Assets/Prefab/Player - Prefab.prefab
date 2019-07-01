@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 1890410116477727017}
   - component: {fileID: 4241056431786819907}
   - component: {fileID: 1677347661}
+  - component: {fileID: 39478528717837195}
   m_Layer: 0
   m_Name: Player - Prefab
   m_TagString: Untagged
@@ -158,6 +159,22 @@ MonoBehaviour:
   barrelPivot: {fileID: 2106101334463057575}
   bulletSpawnPoint: {fileID: 756964767}
   networkIdentity: {fileID: 4469884637166294919}
+--- !u!58 &39478528717837195
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469884637166294913}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &5717281090140983445
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +401,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Time: 0.25
   m_Parameters:
     serializedVersion: 3
