@@ -1,63 +1,94 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using BomberCar.Utility.Attributes;
 
-public class GameManager : MonoBehaviour {
-
-    [Header("Variables")]
-    public int styleSelect;
-    public int GameMode;
-    public int PlayerCount = 1;
-
-    string gameVersion = "1";
-
-
-    //Player Data
-    public object[] PlayerData = new object[6];
-
-    //Bot Data
-    public List<object[]> BotData = new List<object[]>();
-
-
-    void Awake()
+namespace BomberCar.Manager
+{
+    public class GameManager : MonoBehaviour
     {
-        Object.DontDestroyOnLoad(this);
-    }
+        public static GameManager gameManager = null; 
+        private Camera camera;
 
-    void Start ()
-    {
-	}
+        [Header("Player Set")]
+        [SerializeField]
+        private GameObject player;
 
-    public void RandomBot(int bot , int carStyle)
-    {
-        object[] botTmp = new object[6];
-        switch (carStyle)
+        [Header("Bots Config")]
+        [GreyOut]
+        [SerializeField]
+        private int botCounts = 0;
+        [SerializeField]
+        private GameObject botPrefab;
+        private GameObject[] bots = new GameObject[3];
+
+        [Header("Plataformas")]
+        public Transform[] Platforms;
+
+
+        void Awake()
         {
-            case 0:
-                botTmp[0] = Random.Range(0, 7);
-                botTmp[1] = Random.Range(0, 8);
-                botTmp[2] = Random.Range(0, 8);
-                botTmp[3] = Random.Range(0, 7);
-                botTmp[4] = Random.Range(0, 4);
-                botTmp[5] = Random.Range(0, 4);
-                break;
-            case 1:
-                botTmp[0] = Random.Range(0, 1);
-                botTmp[1] = Random.Range(0, 3);
-                botTmp[2] = Random.Range(0, 1);
-                botTmp[3] = Random.Range(0, 5);
-                botTmp[4] = Random.Range(0, 1);
-                botTmp[5] = Random.Range(0, 1);
-                break;
+            if (gameManager == null) gameManager = this;
+            else if (gameManager != this) Destroy(gameManager);
+
+            DontDestroyOnLoad(this);
+
+            camera = Camera.main;
         }
-        BotData.Add(botTmp);
-    }
 
+        void Start()
+        {
+            player = Instantiate(player, Platforms[0]);
+            player.GetComponent<Car>().Main = true;
+        }
 
-    public void PartidaOffline(int mapa)
-    {
-        SceneManager.LoadScene(mapa);
+        public GameObject GetPlayer()
+        {
+            return player;
+        }
+
+        public Camera GetCamera()
+        {
+            return camera;
+        }
+
+        public GameObject[] GetBots()
+        {
+            return bots;
+        }
+
+        public void SetBotsCount(int count)
+        {
+            botCounts = count;
+        }
+
+        /// <summary>
+        /// Add or Delete Bot
+        /// </summary>
+        /// <param name="add_delete">Add(0) or Delete(1)</param>
+        public void Add_Delete_Bot(int add_delete)
+        {
+            switch (add_delete)
+            {
+                case 1:
+                    if (botCounts < 3)
+                    {
+                        bots[botCounts] = Instantiate(botPrefab, Platforms[botCounts + 1]);
+
+                        bots[botCounts].transform.parent = Platforms[botCounts + 1].transform;
+                        botCounts++;
+                    }
+                    break;
+                case -1:
+                    if (botCounts > 0)
+                    {
+                        botCounts--;
+                        Destroy(bots[botCounts]);
+                    }
+                    break;
+            }
+        }
+
     }
 }
